@@ -1,18 +1,19 @@
 import json
 import pickle
 
-#-------Inserting-------
-server = []
-name = []
+# -------Inserting-------
+domain = []
+nickname = []
 email = []
 psswd = []
+num = 1
 
-#-------Showing-------
-s = open('server_name.json')
-server = json.load(s)
+# -------Showing-------
+s = open('domain_name.json')
+domain = json.load(s)
 
-n = open('name.json')
-name = json.load(n)
+n = open('nickname.json')
+nickname = json.load(n)
 
 e = open('e-mail.json')
 email = json.load(e)
@@ -20,7 +21,7 @@ email = json.load(e)
 p = open('psswd.json')
 psswd = json.load(p)
 
-
+num_show = len(psswd)
 
 circle = "t"
 
@@ -33,72 +34,76 @@ while circle == "t":
 
     inpt = int(input())
     if inpt == 1:
-        print("Type server name: ")
-        server_inpt = input()
-        server.append(server_inpt)
-        with open('server_name.json', 'w') as i:
-            json.dump(server, i)
-        with open('file_server_name', 'wb') as fi:
-            pickle.dump(server, fi)
-        
-        print("Type name (if there is not type -) : ")
-        name_inpt = input()
-        name.append(name_inpt)
-        with open('name.json', 'w') as i:
-            json.dump(name, i)
-        with open('file_name', 'wb') as fi:
-            pickle.dump(name, fi)
+        for i in range(num):
+            domain_name = input("Domain: ")
+            nickname_name = input("Nickname (if do not exist type '-') : ")
+            email_name = input("E-mail: ")
+            psswd_name = input("Password: ")
 
-        print("Type e-mail: ")
-        email_inpt = input()
-        email.append(email_inpt)
-        with open('e-mail.json', 'w') as i:
-            json.dump(email, i)
-        with open('file_e-mail', 'wb') as fi:
-            pickle.dump(email, fi)
+            domain.append(domain_name)
+            with open('domain.json', 'w') as i:
+                json.dump(domain, i)
+            with open('file_domain', 'wb') as fi:
+                pickle.dump(domain, fi)
 
-        print("Type password: ")
-        psswd_inpt = input()
-        psswd.append(psswd_inpt)
-        with open('psswd.json', 'w') as i:
-            json.dump(psswd, i)
-        with open('file_psswd', 'wb') as fi:
-            pickle.dump(psswd, fi)
+            nickname.append(nickname_name)
+            with open('nickname.json', 'w') as i:
+                json.dump(nickname, i)
+            with open('file_nickname', 'wb') as fi:
+                pickle.dump(nickname, fi)
+
+            email.append(email_name)
+            with open('e-mail.json', 'w') as i:
+                json.dump(email, i)
+            with open('file_e-mail', 'wb') as fi:
+                pickle.dump(email, fi)
+
+            psswd.append(psswd_name)
+            with open('psswd.json', 'w') as i:
+                json.dump(psswd, i)
+            with open('file_psswd', 'wb') as fi:
+                pickle.dump(psswd, fi)
 
     if inpt == 2:
-        print(server)
-        print(name)
-        print(email)
-        print(psswd)
+        print("\n---Domain---\t\t\t---Nickname---\n")
 
+        for i in range(num_show):
+            print("{}\t\t\t{}".format(domain[i], nickname[i]))
+
+        print("\n---E-mail---\t\t\t---Password---\n")
+
+        for i in range(num_show):
+            print("{}\t\t\t{}".format(email[i], psswd[i]))
+
+        print("\n")
     if inpt == 9:
-#Server------------
-        server_list = [server]
-        with open('server_name.json', 'w') as h:
-            json.dump(server_list, h)
+        # Server------------
+        domain_list = [domain]
+        with open('domain.json', 'w') as h:
+            json.dump(domain_list, h)
 
-        with open('server_name.json') as server_data:
-            ServerData = json.load(server_data)
-            ServerData.remove(server)
+        with open('domain.json') as domain_data:
+            DomainData = json.load(domain_data)
+            DomainData.remove(domain)
 
-        with open('server_name.json', 'w') as q:
-            json.dump(ServerData, q)
-            m = open('server_name.json')
+        with open('domain.json', 'w') as q:
+            json.dump(DomainData, q)
+            m = open('domain.json')
 
-#Name--------------
-        name_list = [name]
-        with open('name.json', 'w') as h:
-            json.dump(name_list, h)
+# Name--------------
+        nickname_list = [nickname]
+        with open('nickname.json', 'w') as h:
+            json.dump(nickname_list, h)
 
-        with open('name.json') as name_data:
-            NameData = json.load(name_data)
-            NameData.remove(name)
+        with open('nickname.json') as nickname_data:
+            NicknameData = json.load(nickname_data)
+            NicknameData.remove(nickname)
 
-        with open('name.json', 'w') as q:
-            json.dump(NameData, q)
-            m = open('name.json')
+        with open('nickname.json', 'w') as q:
+            json.dump(NicknameData, q)
+            m = open('nickname.json')
 
-#E-mail------------
+# E-mail------------
         email_list = [email]
         with open('e-mail.json', 'w') as h:
             json.dump(email_list, h)
@@ -111,7 +116,7 @@ while circle == "t":
             json.dump(EmailData, q)
             m = open('e-mail.json')
 
-#Password----------
+# Password----------
         psswd_list = [psswd]
         with open('psswd.json', 'w') as h:
             json.dump(psswd_list, h)
@@ -122,12 +127,8 @@ while circle == "t":
 
         with open('psswd.json', 'w') as q:
             json.dump(PsswdData, q)
-            m = open('psswd.json') 
-
-
+            m = open('psswd.json')
 
     if inpt == 0:
         print("Exiting...")
         circle = "f"
-
-    
