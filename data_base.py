@@ -11,7 +11,7 @@ psswd = []
 num = 1
 
 # -------Showing-------
-s = open('domain_name.json')
+s = open('domain.json')
 domain = json.load(s)
 
 n = open('nickname.json')
